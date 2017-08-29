@@ -1,31 +1,30 @@
 package com.hsenid.translator;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.hsenid.translator.asynctasks.SpinnerLanguageSetter;
+import com.hsenid.translator.asynctasks.GoogleSpinnerSetter;
 import com.hsenid.translator.asynctasks.TranslateCaller;
 
-public class YandexTranslate extends AppCompatActivity {
+public class GoogleTranslate extends AppCompatActivity {
 
     private Spinner fromLanguageSpinner;
     private Spinner toLangSpinner;
     private Button translateButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yandex_translate);
+        setContentView(R.layout.activity_google_translate);
 
         fromLanguageSpinner = (Spinner) findViewById(R.id.fromLangSpinner);
         toLangSpinner = (Spinner) findViewById(R.id.toLangSpinner);
 
-        final SpinnerLanguageSetter spinnerLanguageSetter = (SpinnerLanguageSetter) new SpinnerLanguageSetter(fromLanguageSpinner, toLangSpinner, YandexTranslate.this).execute();
+        final GoogleSpinnerSetter googleSpinnerSetter = (GoogleSpinnerSetter) new GoogleSpinnerSetter(fromLanguageSpinner, toLangSpinner, GoogleTranslate.this).execute();
 
         translateButton = (Button) findViewById(R.id.translateButton);
 
@@ -42,7 +41,7 @@ public class YandexTranslate extends AppCompatActivity {
                 String text = textToTranslateEdit.getText().toString();
 
                 if(text != null && !text.isEmpty()){
-                    new TranslateCaller(text, spinnerLanguageSetter.returnKeyforValue(fromLanguage), spinnerLanguageSetter.returnKeyforValue(toLanguage), translatedTextEdit).execute();
+                    new TranslateCaller(text, googleSpinnerSetter.returnKeyforValue(fromLanguage), googleSpinnerSetter.returnKeyforValue(toLanguage), translatedTextEdit).execute();
                 }
 
 
@@ -50,5 +49,7 @@ public class YandexTranslate extends AppCompatActivity {
 
             }
         });
+
+
     }
 }

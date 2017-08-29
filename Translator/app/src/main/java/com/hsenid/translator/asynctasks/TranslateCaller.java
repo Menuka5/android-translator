@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.hsenid.translator.R;
 import com.hsenid.translator.models.TranslatedTextModel;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -18,13 +17,6 @@ import java.util.ArrayList;
 
 public class TranslateCaller extends AsyncTask<Void, Void, ArrayList<String>> {
 
-    public TranslateCaller(String text, String fromLanguage, String toLanguage, EditText translatedText) {
-        this.text = text;
-        this.fromLanguage = fromLanguage;
-        this.toLanguage = toLanguage;
-        this.translatedText = translatedText;
-    }
-
     private String text;
     private String fromLanguage;
     private String toLanguage;
@@ -33,6 +25,13 @@ public class TranslateCaller extends AsyncTask<Void, Void, ArrayList<String>> {
     RestTemplate restTemplate = new RestTemplate();
 
     ArrayList<String> reply;
+
+    public TranslateCaller(String text, String fromLanguage, String toLanguage, EditText translatedText) {
+        this.text = text;
+        this.fromLanguage = fromLanguage;
+        this.toLanguage = toLanguage;
+        this.translatedText = translatedText;
+    }
 
 
     public ArrayList<String> translateText(String text, String fromLanguage, String toLanguage){

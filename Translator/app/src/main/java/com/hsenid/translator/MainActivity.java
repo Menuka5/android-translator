@@ -9,15 +9,25 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button yandexTranslateBtn;
+    Button googleTranslateBtn;
 
     public void init(){
         yandexTranslateBtn = (Button) findViewById(R.id.yandexBtn);
+        googleTranslateBtn = (Button) findViewById(R.id.googleBtn);
 
         yandexTranslateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent openActivity = new Intent(MainActivity.this, YandexTranslate.class);
-                startActivity(openActivity);
+                Intent yandexActivity = new Intent(MainActivity.this, YandexTranslate.class);
+                startActivity(yandexActivity);
+            }
+        });
+
+        googleTranslateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent googleActivity = new Intent(MainActivity.this, GoogleTranslate.class);
+                startActivity(googleActivity);
             }
         });
 
